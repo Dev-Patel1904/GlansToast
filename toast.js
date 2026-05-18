@@ -150,7 +150,7 @@ function showToast(type = 'info', title = '', message = '', duration = 4500) {
     removeToast(toast);
   });
 }
-
+//toast
 function removeToast(toastEl) {
   toastEl.classList.add('hide');
   toastEl.addEventListener('animationend', (e) => {
