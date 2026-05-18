@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toast Notification System Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/text/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="toast.css">
+    
+    <style>
+        body { background-color: #f8f9fa; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .card { border: none; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border-radius: 16px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9 text-center">
+                <div class="card p-5">
+                    <h2 class="mb-3 fw-bold text-dark">Toast Notification Studio</h2>
+                    <p class="text-muted mb-4">Hover over any timed notification below to freeze the countdown progress bar!</p>
+                    
+                    <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+                        <button class="btn btn-success px-4 py-2" onclick="showToast('success', 'Success!', 'Data saved successfully.')">
+                            Success
+                        </button>
+                        <button class="btn btn-danger px-4 py-2" onclick="showToast('error', 'Error!', 'Something went wrong.')">
+                            Error
+                        </button>
+                        <button class="btn btn-warning text-white px-4 py-2" onclick="showToast('warning', 'Warning!', 'Please check input.')">
+                            Warning
+                        </button>
+                        <button class="btn btn-info text-white px-4 py-2" onclick="showToast('info', 'Info!', 'New update available.')">
+                            Info
+                        </button>
+                    </div>
+
+                    <div class="border-top pt-4">
+                        <h5 class="text-secondary mb-3">Interactive Logic Confirmation</h5>
+                        <button class="btn btn-dark px-5 py-2" onclick="handleDeleteAction()">
+                            <i class="bi bi-trash3 me-2"></i> Delete User Account
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="toast.js"></script>
+    <script>
+        async function handleDeleteAction() {
+            const confirmed = await showToast('confirm', 'Are you sure?', 'This action cannot be undone. Do you want to proceed?');
+            
+            if (confirmed) {
+                showToast('success', 'Deleted!', 'The user account has been completely wiped.');
+            } else {
+                showToast('info', 'Cancelled', 'Account remains untouched.');
+            }
+        }
+    </script>
+</body>
+</html>
