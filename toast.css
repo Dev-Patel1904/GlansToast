@@ -1,225 +1,253 @@
 /* ==========================================================================
-   Toast Notification System - Enhanced Styles
+   Toast Notification System - Professional Light Theme
    ========================================================================== */
 
    :root {
-      --toast-success: #00c896;
-      --toast-error:   #ff4757;
-      --toast-warning: #ffab00;
-      --toast-info:    #2979ff;
-      --toast-confirm: #7c4dff;
-      --toast-bg:      rgba(14, 16, 24, 0.92);
-      --toast-border:  rgba(255, 255, 255, 0.08);
-      --toast-text:    #e8eaf6;
-      --toast-muted:   #7b82a0;
-    }
-    
-    /* Container */
-    #toast-container {
-      position: fixed;
-      top: 24px;
-      right: 24px;
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      width: 380px;
-      max-width: calc(100vw - 48px);
-      pointer-events: none;
-    }
-    
-    /* Base Toast */
-    .custom-toast {
-      position: relative;
-      pointer-events: auto;
-      border-radius: 20px;
-      padding: 18px 18px 18px 22px;
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      overflow: hidden;
-      cursor: default;
-    
-      background: var(--toast-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--toast-border);
-      box-shadow:
-        0 24px 48px rgba(0, 0, 0, 0.5),
-        0 4px 12px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06);
-    
-      animation: toastIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    
-    .custom-toast:hover {
-      transform: translateX(-4px) scale(1.015);
-    }
-    
-    .custom-toast.hide {
-      animation: toastOut 0.35s cubic-bezier(0.55, 0, 1, 0.45) forwards;
-    }
-    
-    /* Colored glow border per type */
-    .toast-success { box-shadow: 0 24px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,200,150,0.25),  0 0 32px rgba(0,200,150,0.08),  inset 0 1px 0 rgba(255,255,255,0.06); }
-    .toast-error   { box-shadow: 0 24px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,71,87,0.25),   0 0 32px rgba(255,71,87,0.08),   inset 0 1px 0 rgba(255,255,255,0.06); }
-    .toast-warning { box-shadow: 0 24px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,171,0,0.25),   0 0 32px rgba(255,171,0,0.08),   inset 0 1px 0 rgba(255,255,255,0.06); }
-    .toast-info    { box-shadow: 0 24px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(41,121,255,0.25),  0 0 32px rgba(41,121,255,0.08),  inset 0 1px 0 rgba(255,255,255,0.06); }
-    .toast-confirm { box-shadow: 0 24px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(124,77,255,0.25),  0 0 32px rgba(124,77,255,0.08),  inset 0 1px 0 rgba(255,255,255,0.06); }
-    
-    /* Glowing left strip */
-    .custom-toast::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      border-radius: 3px 0 0 3px;
-    }
-    .toast-success::before { background: var(--toast-success); box-shadow: 0 0 10px var(--toast-success); }
-    .toast-error::before   { background: var(--toast-error);   box-shadow: 0 0 10px var(--toast-error); }
-    .toast-warning::before { background: var(--toast-warning); box-shadow: 0 0 10px var(--toast-warning); }
-    .toast-info::before    { background: var(--toast-info);    box-shadow: 0 0 10px var(--toast-info); }
-    .toast-confirm::before { background: var(--toast-confirm); box-shadow: 0 0 10px var(--toast-confirm); }
-    
-    /* Icon Orb */
-    .toast-icon-orb {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.15rem;
-      flex-shrink: 0;
-    }
-    /* show toast messages */
-    .toast-success .toast-icon-orb { background: rgba(0,200,150,0.15);  color: var(--toast-success); animation: orbPop 0.5s cubic-bezier(0.34,1.56,0.64,1); }
-    .toast-error   .toast-icon-orb { background: rgba(255,71,87,0.15);   color: var(--toast-error);   animation: orbShake 0.45s ease; }
-    .toast-warning .toast-icon-orb { background: rgba(255,171,0,0.15);   color: var(--toast-warning); animation: orbPop 0.5s cubic-bezier(0.34,1.56,0.64,1); }
-    .toast-info    .toast-icon-orb { background: rgba(41,121,255,0.15);  color: var(--toast-info);    animation: orbBounce 0.5s ease; }
-    .toast-confirm .toast-icon-orb { background: rgba(124,77,255,0.15);  color: var(--toast-confirm); animation: orbPop 0.5s cubic-bezier(0.34,1.56,0.64,1); }
-    
-    /* Content */
-    .toast-body { flex: 1; min-width: 0; }
-    
-    .toast-title {
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--toast-text);
-      margin-bottom: 3px;
-      letter-spacing: -0.01em;
-    }
-    
-    .toast-message {
-      font-size: 0.82rem;
-      color: var(--toast-muted);
-      line-height: 1.5;
-      margin: 0;
-    }
-    
-    /* Confirm action buttons */
-    .toast-actions {
-      display: flex;
-      gap: 8px;
-      margin-top: 14px;
-    }
-    
-    .toast-btn {
-      flex: 1;
-      padding: 8px 16px;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    
-    .toast-btn-ok {
-      background: linear-gradient(135deg, #7c4dff, #5c35cc);
-      color: #fff;
-      box-shadow: 0 4px 14px rgba(124, 77, 255, 0.35);
-    }
-    .toast-btn-ok:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(124, 77, 255, 0.5);
-    }
-    
-    .toast-btn-cancel {
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--toast-muted);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .toast-btn-cancel:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--toast-text);
-    }
-    
-    /* Close Button */
-    .toast-close-btn {
-      background: none;
-      border: none;
-      color: rgba(255, 255, 255, 0.22);
-      cursor: pointer;
-      font-size: 0.85rem;
-      padding: 4px;
-      border-radius: 8px;
-      line-height: 1;
-      flex-shrink: 0;
-      margin-top: 1px;
-      transition: all 0.15s ease;
-    }
-    .toast-close-btn:hover {
-      color: rgba(255, 255, 255, 0.7);
-      background: rgba(255, 255, 255, 0.08);
-    }
-    
-    /* Progress Bar */
-    .toast-progress {
-      position: absolute;
-      bottom: 0; left: 0;
-      height: 2.5px;
-      width: 100%;
-      transform-origin: left;
-      border-radius: 0 0 0 20px;
-    }
-    .toast-success .toast-progress { background: linear-gradient(90deg, rgba(0,200,150,0.25), var(--toast-success)); }
-    .toast-error   .toast-progress { background: linear-gradient(90deg, rgba(255,71,87,0.25),  var(--toast-error)); }
-    .toast-warning .toast-progress { background: linear-gradient(90deg, rgba(255,171,0,0.25),  var(--toast-warning)); }
-    .toast-info    .toast-progress { background: linear-gradient(90deg, rgba(41,121,255,0.25), var(--toast-info)); }
-    
-    /* ==========================================================================
-       Keyframe Animations
-       ========================================================================== */
-    @keyframes toastIn {
-      0%   { opacity: 0; transform: translateX(110%) scale(0.85); }
-      60%  { opacity: 1; transform: translateX(-6px) scale(1.02); }
-      100% { opacity: 1; transform: translateX(0) scale(1); }
-    }
-    
-    @keyframes toastOut {
-      0%   { opacity: 1; transform: translateX(0) scale(1); }
-      25%  { transform: translateX(-6px) scale(1.01); }
-      100% { opacity: 0; transform: translateX(115%) scale(0.9); }
-    }
-    
-    @keyframes orbPop {
-      0%   { transform: scale(0.4); opacity: 0.4; }
-      65%  { transform: scale(1.25); }
-      100% { transform: scale(1);   opacity: 1; }
-    }
-    
-    @keyframes orbShake {
-      0%,100% { transform: translateX(0) rotate(0deg); }
-      20%     { transform: translateX(-5px) rotate(-10deg); }
-      40%     { transform: translateX(5px)  rotate(10deg); }
-      60%     { transform: translateX(-3px) rotate(-5deg); }
-      80%     { transform: translateX(3px)  rotate(5deg); }
-    }
-    
-    @keyframes orbBounce {
-      0%   { transform: translateY(10px) scale(0.75); opacity: 0; }
-      60%  { transform: translateY(-6px) scale(1.08); }
-      100% { transform: translateY(0)    scale(1);    opacity: 1; }
-    }
+    --toast-success: #16a34a;
+    --toast-error:   #dc2626;
+    --toast-warning: #d97706;
+    --toast-info:    #2563eb;
+    --toast-confirm: #7c3aed;
+  
+    --toast-success-bg:     #f0fdf4;
+    --toast-error-bg:       #fff5f5;
+    --toast-warning-bg:     #fffbeb;
+    --toast-info-bg:        #eff6ff;
+    --toast-confirm-bg:     #f5f3ff;
+  
+    --toast-success-border: #bbf7d0;
+    --toast-error-border:   #fecaca;
+    --toast-warning-border: #fde68a;
+    --toast-info-border:    #bfdbfe;
+    --toast-confirm-border: #ddd6fe;
+  
+    --toast-title-color:    #111827;
+    --toast-msg-color:      #6b7280;
+  }
+  
+  /* ── Container ─────────────────────────────────────────────── */
+  #toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 360px;
+    max-width: calc(100vw - 40px);
+    pointer-events: none;
+  }
+  
+  /* ── Base Toast ─────────────────────────────────────────────── */
+  .custom-toast {
+    position: relative;
+    pointer-events: auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 16px 16px 20px;
+    border-radius: 14px;
+    overflow: hidden;
+  
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow:
+      0 4px 6px -1px rgba(0,0,0,0.07),
+      0 10px 24px -4px rgba(0,0,0,0.10),
+      0 1px 3px rgba(0,0,0,0.05);
+  
+    animation: toastIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+  }
+  
+  .custom-toast:hover {
+    transform: translateX(-3px) scale(1.012);
+    box-shadow:
+      0 8px 16px -2px rgba(0,0,0,0.10),
+      0 20px 40px -6px rgba(0,0,0,0.12);
+  }
+  
+  .custom-toast.hide {
+    animation: toastOut 0.32s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+  }
+  
+  /* ── Colored glowing left strip ─────────────────────────────── */
+  .custom-toast::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    border-radius: 14px 0 0 14px;
+  }
+  .toast-success::before { background: var(--toast-success); box-shadow: 2px 0 8px rgba(22,163,74,0.40); }
+  .toast-error::before   { background: var(--toast-error);   box-shadow: 2px 0 8px rgba(220,38,38,0.40); }
+  .toast-warning::before { background: var(--toast-warning); box-shadow: 2px 0 8px rgba(217,119,6,0.40); }
+  .toast-info::before    { background: var(--toast-info);    box-shadow: 2px 0 8px rgba(37,99,235,0.40); }
+  .toast-confirm::before { background: var(--toast-confirm); box-shadow: 2px 0 8px rgba(124,58,237,0.40); }
+  
+  /* ── Per-type tinted background ─────────────────────────────── */
+  .toast-success { background: var(--toast-success-bg); border-color: var(--toast-success-border); }
+  .toast-error   { background: var(--toast-error-bg);   border-color: var(--toast-error-border); }
+  .toast-warning { background: var(--toast-warning-bg); border-color: var(--toast-warning-border); }
+  .toast-info    { background: var(--toast-info-bg);    border-color: var(--toast-info-border); }
+  .toast-confirm { background: var(--toast-confirm-bg); border-color: var(--toast-confirm-border); }
+  
+  /* ── Icon Orb ───────────────────────────────────────────────── */
+  .toast-icon-orb {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  
+  .toast-success .toast-icon-orb { background: #dcfce7; color: var(--toast-success); animation: orbPop    0.5s cubic-bezier(0.34,1.56,0.64,1); }
+  .toast-error   .toast-icon-orb { background: #fee2e2; color: var(--toast-error);   animation: orbShake  0.45s ease; }
+  .toast-warning .toast-icon-orb { background: #fef3c7; color: var(--toast-warning); animation: orbPop    0.5s cubic-bezier(0.34,1.56,0.64,1); }
+  .toast-info    .toast-icon-orb { background: #dbeafe; color: var(--toast-info);    animation: orbBounce 0.5s ease; }
+  .toast-confirm .toast-icon-orb { background: #ede9fe; color: var(--toast-confirm); animation: orbPop    0.5s cubic-bezier(0.34,1.56,0.64,1); }
+  
+  /* ── Toast Body — FIX for disappearing message ──────────────── */
+  .toast-body {
+    flex: 1 1 0%;    /* 0% basis forces correct flex shrink/grow */
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .toast-title {
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: var(--toast-title-color);
+    margin: 0 0 3px 0;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  
+  /* KEY FIX: message was collapsing to 0 height */
+  .toast-message {
+    font-size: 0.8rem;
+    color: var(--toast-msg-color);
+    line-height: 1.55;
+    margin: 0;
+    padding: 0;
+    display: block;
+    word-break: break-word;
+    white-space: normal;
+    flex-shrink: 0;         /* do NOT shrink the message */
+  }
+  
+  /* ── Confirm Buttons ────────────────────────────────────────── */
+  .toast-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-shrink: 0;
+  }
+  
+  .toast-btn {
+    flex: 1;
+    padding: 7px 14px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.01em;
+  }
+  
+  .toast-btn-ok {
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    color: #fff;
+    box-shadow: 0 3px 10px rgba(124,58,237,0.28);
+  }
+  .toast-btn-ok:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 16px rgba(124,58,237,0.42);
+  }
+  
+  .toast-btn-cancel {
+    background: #ffffff;
+    color: #6b7280;
+    border: 1px solid #e5e7eb;
+  }
+  .toast-btn-cancel:hover {
+    background: #f9fafb;
+    color: #374151;
+    border-color: #d1d5db;
+  }
+  
+  /* ── Close Button ───────────────────────────────────────────── */
+  .toast-close-btn {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    font-size: 0.78rem;
+    padding: 4px 5px;
+    border-radius: 7px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: all 0.15s ease;
+  }
+  .toast-close-btn:hover {
+    color: #374151;
+    background: rgba(0,0,0,0.07);
+  }
+  
+  /* ── Progress Bar ───────────────────────────────────────────── */
+  .toast-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    transform-origin: left;
+    border-radius: 0 0 14px 14px;
+  }
+  .toast-success .toast-progress { background: linear-gradient(90deg, #86efac, var(--toast-success)); }
+  .toast-error   .toast-progress { background: linear-gradient(90deg, #fca5a5, var(--toast-error)); }
+  .toast-warning .toast-progress { background: linear-gradient(90deg, #fcd34d, var(--toast-warning)); }
+  .toast-info    .toast-progress { background: linear-gradient(90deg, #93c5fd, var(--toast-info)); }
+  
+  /* ==========================================================================
+     Keyframe Animations
+     ========================================================================== */
+  @keyframes toastIn {
+    0%   { opacity: 0; transform: translateX(110%) scale(0.88); }
+    60%  { opacity: 1; transform: translateX(-5px) scale(1.015); }
+    100% { opacity: 1; transform: translateX(0) scale(1); }
+  }
+  
+  @keyframes toastOut {
+    0%   { opacity: 1; transform: translateX(0) scale(1); }
+    20%  { transform: translateX(-5px) scale(1.01); }
+    100% { opacity: 0; transform: translateX(112%) scale(0.9); }
+  }
+  
+  @keyframes orbPop {
+    0%   { transform: scale(0.4); opacity: 0.5; }
+    65%  { transform: scale(1.2); }
+    100% { transform: scale(1);   opacity: 1; }
+  }
+  
+  @keyframes orbShake {
+    0%,100% { transform: translateX(0) rotate(0deg); }
+    20%     { transform: translateX(-5px) rotate(-10deg); }
+    40%     { transform: translateX(5px)  rotate(10deg); }
+    60%     { transform: translateX(-3px) rotate(-5deg); }
+    80%     { transform: translateX(3px)  rotate(5deg); }
+  }
+  
+  @keyframes orbBounce {
+    0%   { transform: translateY(9px) scale(0.75); opacity: 0; }
+    60%  { transform: translateY(-5px) scale(1.08); }
+    100% { transform: translateY(0)    scale(1);    opacity: 1; }
+  }
