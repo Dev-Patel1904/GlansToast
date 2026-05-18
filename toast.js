@@ -116,7 +116,7 @@ const toastIcons = {
       removeToast(toast);
     });
   }
-  
+  //this is remove function
   function removeToast(toastEl) {
     toastEl.classList.add('hide');
     toastEl.addEventListener('animationend', (e) => {
