@@ -1,50 +1,50 @@
-GlansToast Installation & Usage Guide
-🚀 CDN Installation
-Add the following tags to your project layout:
+GlassToast – Modern 3D Toast Notification Library
+GlassToast is a lightweight, modern, and beautiful toast notification library with 3D glass effects and smooth animations.
 
-1. Inside your <head> tag:
-HTML
+✨ Features
+Modern glassmorphism UI
+3D animated toasts
+Success, Error, Info, Warning types
+Confirmation dialog support
+Auto-hide with progress bar
+Pause on hover
+Click to close
+No dependencies (except Font Awesome for icons)
+Easy CDN integration
+🚀 Installation (Using CDN)
+You can use GlassToast directly in your project without downloading anything.
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/text/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet">
+Example of How to Add CDN
+<!DOCTYPE html>
+<html>
+<head>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Dev-Patel1904/GlansToast@main/toast.css?v=1.0.0">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/text/bootstrap.min.css" rel="stylesheet">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet">
 
-2. Right before your closing </body> tag:
-HTML
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Dev-Patel1904/GlansToast@main/toast.css?v=1.0.0">
 
-<script src="https://cdn.jsdelivr.net/gh/Dev-Patel1904/GlansToast@main/toast.js?v=1.0.0"></script>
+</head>
 
-📖 Code Examples
+<body>
 
-1. Standard Auto-Dismissing Alerts
-These automatically disappear after the specified duration (default is 4000ms):
+    <!-- Your website content -->
 
-JavaScript
-// Success Alert
-showToast('success', 'Success!', 'Data saved successfully.');
+    <script src="https://cdn.jsdelivr.net/gh/Dev-Patel1904/GlansToast@main/toast.js?v=1.0.0"></script>
 
-// Error Alert
-showToast('error', 'Error!', 'Something went wrong.', 5000); // Overridden to stay for 5 seconds
+</body>
+</html>
 
-// Warning Alert
-showToast('warning', 'Warning!', 'Please check your input fields.');
-
-// Info Alert
-showToast('info', 'Info!', 'New updates are available.');
-
-
-2. Interactive Choice Confirmation Prompt
-The confirm layout does not auto-dismiss. It returns a Promise that resolves to true when the user clicks OK, and false when they click Cancel:
-
-JavaScript
-async function handleDeleteAction() {
-    // Execution waits here until the user interacts with the toast interface
-    const confirmed = await showToast('confirm', 'Are you sure?', 'This action cannot be undone. Do you want to proceed?');
+Example of class
+   1 ShowToast.success("Success", "Data saved successfully!");
+   2 ShowToast.error("Error", "Something went wrong!");
+   3 ShowToast.info("Info", "New update available.");
+   4 ShowToast.warning("Warning", "Please fill all fields.");
+   5 ShowToast.confirm("Delete User", "Are you sure?", function() {
+      // Code to execute on confirm
+      console.log("User confirmed!");
+    });
     
-    if (confirmed) {
-        showToast('success', 'Deleted!', 'The data has been permanently cleared.');
-    } else {
-        showToast('info', 'Cancelled', 'Operation aborted securely.');
-    }
-}
+  6 => You can customize toast duration (in milliseconds):
+  ShowToast.success("Saved", "Record saved!", 8000);
+
